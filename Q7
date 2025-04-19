@@ -1,0 +1,37 @@
+//Word Replacement in Sentences: Request a sentence and two words from the user: one
+to search for and one to replace it with. Find the first occurrence of the search word 
+the sentence. Replace the word using substring operations and concatenation. Display
+the original and the modified sentences.
+
+
+
+import java.util.Scanner;
+
+public class SimpleWordReplacement {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get user input for sentence, search word, and replace word
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine();
+
+        System.out.print("Enter the word to search for: ");
+        String searchWord = scanner.nextLine();
+
+        System.out.print("Enter the word to replace it with: ");
+        String replaceWord = scanner.nextLine();
+
+        // Replace the first occurrence of the search word
+        if (sentence.contains(searchWord)) {
+            String modifiedSentence = sentence.replaceFirst(searchWord, replaceWord);
+
+            // Display the original and modified sentences
+            System.out.println("\nOriginal Sentence: " + sentence);
+            System.out.println("Modified Sentence: " + modifiedSentence);
+        } else {
+            System.out.println("The word '" + searchWord + "' was not found in the sentence.");
+        }
+
+        scanner.close();
+    }
+}
