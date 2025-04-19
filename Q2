@@ -1,0 +1,29 @@
+//Write a Java program that demonstrates the immutability of the String class and how it
+implements the CharSequence interface. Your program should illustrate the
+behaviours that highlight String immutability and its usage as a CharSequence.
+
+
+public class StringImmutabilityExample {
+    public static void main(String[] args) {
+        // Creating a String object
+        String str = "Hello";
+
+        // Demonstrating immutability:
+        System.out.println("Original String: " + str);
+
+        // Attempting to modify the string (immutability demonstrated here)
+        String modifiedStr = str.concat(" World");
+        System.out.println("After modification (str.concat): " + modifiedStr);  // New string is created
+
+        // The original string is unchanged:
+        System.out.println("Original String after modification attempt: " + str);
+
+        // Demonstrating String as a CharSequence
+        System.out.println("\nUsing String as a CharSequence:");
+
+        // CharSequence methods (String implements CharSequence)
+        System.out.println("Length of the string: " + str.length());  // length() is from CharSequence
+        System.out.println("Character at index 1: " + str.charAt(1)); // charAt() is from CharSequence
+        System.out.println("Subsequence from index 1 to 3: " + str.subSequence(1, 3)); // subSequence() from CharSequence
+    }
+}
