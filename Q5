@@ -1,0 +1,46 @@
+//Case Conversion and Comparison: Prompt the user to input two strings. Convert both
+
+strings to lowercase and uppercase. Compare the converted strings to check case-
+insensitive equality. Display the converted strings and the result of the comparison.
+
+
+
+
+import java.util.Scanner;
+
+public class StringCaseConversionComparison {
+    public static void main(String[] args) {
+        Scanner scanner = new Sc(System.in);
+
+        // Prompt user for two strings
+        System.out.print("Enter the first string: ");
+        String str1 = sc.nextLine();
+
+        System.out.print("Enter the second string: ");
+        String str2 = sc.nextLine();
+
+        // Convert both strings to lowercase and uppercase
+        String str1Lower = str1.toLowerCase();
+        String str1Upper = str1.toUpperCase();
+        String str2Lower = str2.toLowerCase();
+        String str2Upper = str2.toUpperCase();
+
+        // Compare the strings case-insensitively
+        boolean areEqual = str1.equalsIgnoreCase(str2);
+
+        // Display the results
+        System.out.println("\nConverted Strings:");
+        System.out.println("First String in Lowercase: " + str1Lower);
+        System.out.println("First String in Uppercase: " + str1Upper);
+        System.out.println("Second String in Lowercase: " + str2Lower);
+        System.out.println("Second String in Uppercase: " + str2Upper);
+
+        if (areEqual) {
+    System.out.println("\nCase-insensitive comparison result: Equal");
+} else {
+    System.out.println("\nCase-insensitive comparison result: Not Equal");
+}
+
+        sc.close();
+    }
+}
