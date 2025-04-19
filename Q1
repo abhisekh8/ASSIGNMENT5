@@ -1,0 +1,52 @@
+//Write a Java program that illustrates the difference between using string literals and the
+new keyword for creating String objects. Your program should demonstrate the
+memory usage implications and how string comparison behaves differently in each
+case.
+
+
+
+public class StringDifference {
+
+    public static void main(String[] args) {
+        // Using string literals
+        String str1 = "Hello";
+        String str2 = "Hello";  // Same literal as str1
+
+        // Using new keyword
+        String str3 = new String("Hello");  // Creates a new object on heap
+        String str4 = new String("Hello");  // Another new object on heap
+
+        // Displaying memory usage
+        System.out.println("Memory usage with literals:");
+        printMemoryUsage();
+
+        // String comparison using `==` (reference comparison)
+        System.out.println("\nUsing `==` for comparison:");
+        System.out.println("str1 == str2: " + (str1 == str2)); // Should be true (same reference in pool)
+        System.out.println("str1 == str3: " + (str1 == str3)); // Should be false (different references)
+
+        // String comparison using `.equals()` (value comparison)
+        System.out.println("\nUsing `.equals()` for comparison:");
+        System.out.println("str1.equals(str2): " + str1.equals(str2)); // Should be true (same value)
+        System.out.println("str1.equals(str3): " + str1.equals(str3)); // Should be true (same value)
+
+        // Displaying memory usage after all comparisons
+        System.out.println("\nMemory usage after comparisons:");
+        printMemoryUsage();
+
+        // Requesting garbage collection (just to show how objects are managed)
+        System.gc();
+    }
+
+    // Method to print memory usage (Total, Free, and Used Memory)
+    public static void printMemoryUsage() {
+        Runtime runtime = Runtime.getRuntime();
+        long totalMemory = runtime.totalMemory();
+        long freeMemory = runtime.freeMemory();
+        long usedMemory = totalMemory - freeMemory;
+
+        System.out.println("Total Memory: " + totalMemory / (1024 * 1024) + " MB");
+        System.out.println("Free Memory: " + freeMemory / (1024 * 1024) + " MB");
+        System.out.println("Used Memory: " + usedMemory / (1024 * 1024) + " MB");
+    }
+}
