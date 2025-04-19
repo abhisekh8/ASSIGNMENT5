@@ -1,0 +1,140 @@
+//Write a Java program that uses StringBuffer to construct a simple text editor which
+can perform the following operations:
+a. Append a given string to the existing text.
+b. Insert a given string at a specified index within the existing text.
+c. Delete a portion of text between two specified indices.
+d. Reverse the entire text.
+e. Replace a portion of the text between two specified indices with a given string.
+Your program should display a menu with options to perform each of the above
+operations. After each operation, print the current state of the text. Also, display the
+current capacity and length of the StringBuffer after each operation to showcase its
+dynamic nature.
+
+
+
+
+import java.util.Scanner;
+
+public class TextEditor {
+    private StringBuffer text;
+
+    public TextEditor() {
+        text = new StringBuffer();
+    }
+
+    // Method to append text
+    public void appendText(String str) {
+        text.append(str);
+    }
+
+    // Method to insert text at a specified index
+    public void insertText(int index, String str) {
+        if (index >= 0 && index <= text.length()) {
+            text.insert(index, str);
+        } else {
+            System.out.println("Invalid index.");
+        }
+    }
+
+    // Method to delete text between two indices
+    public void deleteText(int startIndex, int endIndex) {
+        if (startIndex >= 0 && endIndex <= text.length() && startIndex < endIndex) {
+            text.delete(startIndex, endIndex);
+        } else {
+            System.out.println("Invalid indices.");
+        }
+    }
+
+    // Method to reverse the entire text
+    public void reverseText() {
+        text.reverse();
+    }
+
+    // Method to replace a portion of text between two indices
+    public void replaceText(int startIndex, int endIndex, String str) {
+        if (startIndex >= 0 && endIndex <= text.length() && startIndex < endIndex) {
+            text.replace(startIndex, endIndex, str);
+        } else {
+            System.out.println("Invalid indices.");
+        }
+    }
+
+    // Method to print the current text, capacity, and length
+    public void printCurrentState() {
+        System.out.println("Current Text: " + text);
+        System.out.println("Length: " + text.length());
+        System.out.println("Capacity: " + text.capacity());
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TextEditor editor = new TextEditor();
+        
+        while (true) {
+            System.out.println("\nText Editor Menu:");
+            System.out.println("1. Append text");
+            System.out.println("2. Insert text at index");
+            System.out.println("3. Delete text between indices");
+            System.out.println("4. Reverse text");
+            System.out.println("5. Replace text between indices");
+            System.out.println("6. Exit");
+            System.out.print("Choose an operation (1-6): ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine();  // consume the newline character
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the text to append: ");
+                    String appendText = scanner.nextLine();
+                    editor.appendText(appendText);
+                    break;
+                    
+                case 2:
+                    System.out.print("Enter the index to insert at: ");
+                    int insertIndex = scanner.nextInt();
+                    scanner.nextLine();  // consume the newline character
+                    System.out.print("Enter the text to insert: ");
+                    String insertText = scanner.nextLine();
+                    editor.insertText(insertIndex, insertText);
+                    break;
+                    
+                case 3:
+                    System.out.print("Enter the start index to delete: ");
+                    int startDelete = scanner.nextInt();
+                    System.out.print("Enter the end index to delete: ");
+                    int endDelete = scanner.nextInt();
+                    editor.deleteText(startDelete, endDelete);
+                    break;
+                    
+                case 4:
+                    editor.reverseText();
+                    break;
+                    
+                case 5:
+                    System.out.print("Enter the start index to replace: ");
+                    int startReplace = scanner.nextInt();
+                    System.out.print("Enter the end index to replace: ");
+                    int endReplace = scanner.nextInt();
+                    scanner.nextLine();  // consume the newline character
+                    System.out.print("Enter the text to replace with: ");
+                    String replaceText = scanner.nextLine();
+                    editor.replaceText(startReplace, endReplace, replaceText);
+                    break;
+                    
+                case 6:
+                    System.out.println("Exiting the program...");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                    
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+                    break;
+            }
+            
+            // Print the current state of the text, length, and capacity after each operation
+            editor.printCurrentState();
+        }
+    }
+}
